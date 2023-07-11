@@ -1,4 +1,29 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Configuration;
+using System.Text;
+using WebApplication1.data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+string strCon = builder.Configuration.GetSection("ConnectionStrings:apiString").Value;
+
+builder.Services.AddDbContext<WebApplication1.data.TestContext>(options => options.UseSqlServer(strCon));
+
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+                          policy =>
+                          {
+                              policy.AllowAnyOrigin()
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                          });
+});
 
 // Add services to the container.
 
