@@ -11,6 +11,7 @@ namespace WebApplication1.data
         public DbSet<WebApplication1.model.project> tProject { get; set; }
         public DbSet<WebApplication1.model.projectTask>? tprojectTask { get; set; }
         public DbSet<WebApplication1.model.SysUser>? tSysUser { get; set; }
+        public DbSet<WebApplication1.model.transLog>? tTransLog { get; set;}
 
     }
 }
